@@ -1,0 +1,60 @@
+
+#controlStyleTable{
+	list-style: none;
+	margin: 0;
+	width: 400px;
+	height: 100%;
+	color: green;
+}
+
+#controlStyleTable td{
+	display:inline-block;
+	width:100px
+}
+
+#column td{
+	display:inline-block;
+	width:100px;
+	color: green;
+}
+
+#column select{
+	display:inline-block;
+	width:100px;
+	color: green;
+}
+
+#controlStyleTable span{
+	display: inline-block;
+	width: 50px;
+}
+
+
+#resultTable{
+	display: inline-block;
+	margin-right: 100px;
+	width: 100px;
+	color: green;
+}
+
+
+#title{
+	display: inline-block;
+	margin-right: 100px;
+	width: 100px;
+	color: green;
+}
+
+
+#option{
+	display: inline-block;
+	float: none;
+	margin-right: 100px;
+	width: 100px;
+	color: green;
+}
+
+#submit{
+	margin-top: 20px;
+	color: green;
+}

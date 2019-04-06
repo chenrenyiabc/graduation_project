@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>流程管理</title>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style>
+        #modifyFlowFam {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            outline: 0;
+            display: block;
+        }
+
+        .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="mainFam">
+    <table class="table table-hover" style="margin-top: 1em;">
+        <thead>
+        <tr>
+            <th>流程ID</th>
+            <th>流程名</th>
+            <th>用户名</th>
+            <th>类型</th>
+            <th>状态</th>
+            <th>源文件名</th>
+            <th>MR算法</th>
+            <th>MR结果路径</th>
+            <th>hive_sql</th>
+            <th>查询结果表</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="dfTable"></tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改
+                </h4>
+            </div>
+            <div class="modal-body" style="height: 400px;">
+                <iframe id="modifyFlowFam" src=""></iframe>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script src="../js/flowManage.js"></script>
+</body>
+</html>

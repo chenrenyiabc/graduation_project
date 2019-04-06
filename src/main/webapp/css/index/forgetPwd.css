@@ -1,0 +1,17 @@
+.content{
+    min-height: 268px;
+    left: 128px;
+    padding-bottom: 20px;
+}
+.form-title {
+	padding: 14px 0;
+}
+.form-title>span{
+	font-size: 14px;
+}
+.form-submit{
+	margin-top: 4px;
+}
+input[type='text'],input[type='password']{
+	border-radius: 4px;
+}

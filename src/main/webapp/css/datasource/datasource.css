@@ -1,0 +1,373 @@
+html,body{
+	padding: 0;
+	margin: 0;
+	font: 14px "Microsoft YaHei", arial, SimSun, 宋体;
+}
+/* 右边样式 */
+i{
+	margin-right: 6px;
+}
+.container{
+	margin: 20px;
+	height: calc(100% - 40px);
+	position: relative;
+}
+.group-report{
+	font-size: 18px;
+	height: 100%;
+	width: 100%；
+}
+.list{
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: relative;
+}
+.list>div{
+	float: left;
+}
+.group-list{
+	width: 200px;
+	border-radius: 4px;
+	height: 100%;
+	/* box-shadow:0 0 0 1px #2a2c40; */
+	/* background: #a7a7a7; */
+	margin-right: 20px;
+
+	overflow-y: auto;
+}
+.datasource-list{
+	width: calc(100% - 220px);
+	height: 100%;
+	overflow-y: auto;
+}
+.title{
+	border-radius: 4px;
+	height: 36px;
+	line-height: 36px;
+	padding-left: 12px;
+	background: #2a2c40;
+	color: white;
+	position: relative;
+}
+.title>span.icon-plus{
+	position: absolute;
+	right: 8px;
+	top: 10px;
+	cursor: pointer;
+}
+.datasource-list.title{
+	border-radius: 4px;
+}
+.datasource-list .tools-bar{
+	height: 32px;
+	line-height: 32px;
+	color: green;
+	position: relative;
+}
+.datasource-list .tools-bar>.btns{
+	top: 9px;
+	color: black;
+	position: absolute;
+	right: 10px;
+}
+#group_list>a{
+	text-decoration: none;
+	white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	
+	position: relative;
+	cursor: pointer;
+	height: 32px;
+	line-height: 32px;
+	display: block;
+	width: 118px;
+	padding: 0 70px 0 12px;
+	/* border-bottom: 1px solid #c1c1c1; */
+	/* background: #989898; */
+	color: #2a2c40;
+}
+.group-list>i.icon-double-angle-left{
+	z-index: 5;
+	background: #7f8196;
+	color: white;
+	position: absolute;
+	/* border: 1px solid #c1c1c1; */
+	border: 0;
+	left: -20px;
+    height: 50px;
+    width: 16px;
+    line-height: 50px;
+    text-align: center;
+	top: calc(50% - 30px);
+	border-top-right-radius:8px;
+	border-bottom-right-radius: 8px;
+	cursor: pointer;
+}
+.group-list>i.icon-double-angle-left:hover{
+	width: 24px;
+}
+a.current{
+	color: red !important;
+}
+
+a>span.number{
+	font-size: 14px;
+	display: block;
+	width: 27px;
+	height: 32px;
+	line-height: 32px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: center;
+	color: #a5a5a5;
+}
+a>span.tools{
+    position: absolute;
+    right: 30px;
+    display:none;
+    cursor:pointer;
+    top:10px;
+}
+a>span.tools>i{
+	margin-right: 6px !important;
+}
+a i.icon-edit{
+	color: green;
+}
+a i.icon-minus-sign{
+	color:#b7b7b7;
+}
+#group_list>a:hover{
+	color: red !important;
+}
+#group_list>a:hover>span.tools{
+	display:inline;
+}
+
+#data_none_tip{
+	display: none;
+}
+
+table{
+	border-collapse:collapse;
+	text-align: left;
+	width:100%;
+	font: 14px "Microsoft YaHei", arial, SimSun, 宋体;
+	position: relative;
+}
+th,td{
+	cursor:pointer;
+	padding: 0 0 0 10px;
+	height:36px;
+	vertical-align:middle;
+	border: 1px solid #D9DDE1;
+}
+th{
+	background: #2a2c40;
+	color: white;
+	border: 1px solid #2a2c40;
+}
+td>span{
+	cursor: pointer;
+	margin-right: 12px;
+}
+td>span:hover{
+	opacity: .6;
+}
+td>span>i{
+	margin-right: 2px;
+}
+td>span.move{
+	color: #45a8fd;
+}
+td>span.show{
+	position:relative;
+	color: green;
+}
+td>span.show>div{
+	position: absolute;
+    box-shadow: 0 0 0 1px #c1c1c1;
+    width: 560px;
+    top: 28px;
+    border-radius: 4px;
+    right: 0;
+    padding:20px;
+    color:#635e5e;
+}
+td>span.show>div>i{
+	position:absolute;
+	color: #c1c1c1;
+    top: -11px;
+    right: 26px;
+    font-size: 16px;
+    background: white;
+}
+td>span.show>div>.info-item{
+	height:24px;
+	line-height:24px;
+	font-size:16px;
+	margin-bottom: 6px;
+}
+td>span.show>div>.info-item>span.title-info{
+	width:88px;
+	height:24px;
+	line-height:24px;
+	display:inline-block;
+}
+td>span.show>div>.info-item>span.value{
+	padding-left:4px;
+}
+td>span.trash{
+	color: red;
+}
+tr.alt>td{
+	background: #efefef;
+}
+th:nth-child(1){
+	width: 10%;
+}
+th:nth-child(2){
+	width: 20%;	
+}
+th:nth-child(3){
+	width: 15%;
+}
+th:nth-child(4){
+	width: 30%;
+}
+th:nth-child(5){
+	width: 25%;
+}
+
+/**
+ * modal样式
+ */
+.modal-container{
+	z-index: 1;
+	display: none;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.modal{
+	z-index: 3;
+	width: 400px;
+	position: absolute;
+	top: 72px;
+	left:calc(50% - 200px);
+	background: white;
+	opacity: 1;
+	padding: 0;
+	margin: 0;
+	border-radius: 6px;
+	box-shadow: 0 3px 9px black;
+}
+.modal form{
+	display: none;
+}
+.modal>.modal-title{
+	height: 44px;
+	line-height: 44px;
+	padding: 0 12px;
+	width: calc(100% - 24px);
+	border-bottom: 1px solid #c1c1c1;
+}
+.modal>.modal-title>div{
+	height: 44px;
+	float: left;
+	font-weight: bold;
+	font-size: 18px;
+	color: #000;
+}
+.modal>.modal-title>span.cancel{
+	display: block;
+	width: 20px;
+	text-align: center;
+	font-weight: 700;
+	opacity: .3;
+	font-size: 21px;
+	position: absolute;
+    right: 16px;
+    cursor: pointer;
+}
+.modal>.modal-title>span.cancel:hover{
+	text-decoration: none;
+	opacity: .7;
+}
+.modal form{
+	margin: 0;
+}
+.modal div#data_group_del,div#data_source_del{
+	margin-bottom: 20px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-size: 16px;
+	color: red;
+	font-weight: bold;
+}
+.modal>.modal-content{
+    margin-top: 20px;
+}
+.modal>.modal-content .input-item{
+	margin:0 40px;
+}
+.input-item>input,.input-item>select{
+	outline:0;
+	height: 32px;
+    line-height: 32px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 0 0 1px #c1c1c1;
+    border-radius: 4px;
+    width: 100%;
+    padding-left: 6px;
+}
+.modal>.modal-content .input-item>input:focus{
+	box-shadow: 0 0 0 2px #5aa6f5;
+}
+.modal>.modal-content .tip{
+	clear:both;
+	display:block;
+	height:20px;
+	line-height:20px;
+	color:red;
+	padding-left:44px;
+	font-size:14px;
+}
+.modal>.modal-foot{
+	text-align: right;
+	height: 44px;
+	line-height: 44px;
+	padding: 0 20px;
+	border-top: 1px solid #c1c1c1;
+}
+.modal>.modal-foot>button{
+	cursor:pointer;
+	border-radius: 6px;
+    padding: 0 10px;
+    margin-left:8px;
+    height: 30px;
+    background: #e1e1e1;
+    outline: 0;
+    border:0;
+    font-weight: bold;
+    color: #0596d8;
+}
+.modal>.modal-foot>button.primary{
+    background: #2db7f5;
+    color: white;
+}
+.modal>.modal-foot>button:hover{
+	opacity: .8;
+}
+.modal>.modal-foot>button:active{
+	border-style: inset;
+}

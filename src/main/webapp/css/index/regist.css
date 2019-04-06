@@ -1,0 +1,45 @@
+.content{
+	height: 336px;
+	left: 128px;
+}
+.form-title {
+	padding: 14px 0;
+}
+.form-title>span{
+	font-size: 14px;
+}
+.form-submit{
+	margin-top: 4px;
+}
+input[type='text'],input[type='password']{
+	border-radius: 4px;
+}
+.username-item{
+	position: relative;
+}
+.username-item>.icon-info-sign{
+	position: absolute;
+    right: -16px;
+    top: 11px;
+    color: #e07020;
+}
+.username-item>.icon-info-sign:hover>.tip-text{
+	display: block;
+}
+.tip-text{
+	display: none;
+	position: absolute;
+    width: 200px;
+    top: 0px;
+    left: 20px;
+    background: #fff;
+    padding: 12px;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 1px #dedede;
+}
+.tip-text>.icon-caret-left{
+	position: absolute;
+    top: 2px;
+    left: -4px;
+    color: white;
+}

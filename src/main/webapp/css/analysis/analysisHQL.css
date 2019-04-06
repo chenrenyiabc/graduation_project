@@ -1,0 +1,40 @@
+* {
+    margin : 0;
+    padding :0;
+}
+.container .showmsg{
+    margin-top: 20px;
+}
+.typetext{
+    font-size: 16px;
+}
+
+.showmsg .text1{
+    position:relative;
+    left:116px;
+    top:-30px;
+}
+.showmsg .text2{
+    position:relative;
+    left:145px;
+    top:-30px;
+}
+.showmsg .text3{
+    position:relative;
+    left:145px;
+    top:-30px;
+}
+.showmsg .layoutDiv{
+    margin-top: 15px;
+}
+
+.type_result{
+	position:relative;
+}
+
+
+#saveflow{
+    position:relative;
+    left:100px;
+    top:-20px;
+}

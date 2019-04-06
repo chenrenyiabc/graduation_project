@@ -1,0 +1,123 @@
+html,body,.main,.content>form{
+    margin: 0;
+    padding: 0;
+    font: 14px "Microsoft YaHei", arial, SimSun, 宋体;
+}
+/* main 整个页面样式 */
+.main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* 顶部样式 */
+.top{
+    background: #575b8e;
+    padding-left: 20px;
+    font-size: 24px;
+    color: white;
+    height: 60px;
+    line-height: 60px;
+    box-shadow:  0 4px 8px 0 black;
+}
+.top>i{
+    margin-right: 12px;
+}
+.description{
+    font-family: "Microsoft YaHei", arial, SimSun, 宋体;
+    left: 36px;
+    top: 96px;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    z-index: 6;
+    width: 500px;
+}
+.description>div{
+    margin-bottom: 20px;
+}
+.description>div>i{
+    margin-right: 12px;
+}
+/* 登录栏 */
+.content{
+    z-index: 12;
+    position: relative;
+    padding: 0 20px;
+    padding-bottom: 20px;
+    width: 312px;
+    top: 36px;
+    left: 128px;
+    background: white;
+    min-height: 214px;
+    max-height: 560px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px 1px rgba(0,0,0,0.3);
+}
+/* 表单标题 */
+.form-title{
+    padding: 14px 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+/* usernam and password */
+input[type='text'],input[type='password'],input[type='button']{
+    width: 100%;
+    height: 36px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-shadow: 0 0 0 1px #c1c1c1;
+}
+input[type='text'],input[type='password']{
+    width: calc(100% - 20px);
+    height: 22px;
+    padding: 7px 10px;
+    border-radius: 4px;
+}
+.password-item{
+    position: relative;
+}
+.password-item>i.icon-eye-close{
+    color: #575b8e;
+    position: absolute;
+    top: 11px;
+    right: 4px;
+}
+/* 下次自动登录 */
+.form-item{
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    margin: 4px 0;
+}
+/* 提示 */
+.tip{
+    height: 22px;
+    clear: both;
+    color: red;
+    font-size: 12px;
+    line-height: 22px;
+}
+.required{
+    box-shadow: 0 0 2px 1px red !important;
+}
+/* 登录按钮 */
+input[type='button']{
+    background: #3582f8;
+    border-radius: 4px;
+    transition: .3s;
+    color: white;
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+}
+input[type='button']:hover{
+    opacity: .7;
+    cursor: pointer;
+}
+.form-submit{
+    margin-top: 4px;
+    position: relative;
+}

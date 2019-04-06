@@ -1,0 +1,37 @@
+html,body,.main,.content>form{
+	margin: 0;
+	padding: 0;
+	font: 14px "Microsoft YaHei", arial, SimSun, 宋体;
+}
+body{
+	height: 100%;
+}
+/* 顶部样式 */
+.top{
+	background: #575b8e;
+	padding-left: 20px;
+	font-size: 24px;
+	color: white;
+	height: 60px;
+	line-height: 60px;
+}
+.top>i{
+	margin-right: 12px;
+}
+
+.result{
+	font-size: 24px;
+    color: green;
+    text-align: center;
+    margin: 20px 0;
+}
+.tologin{
+	font-size: 20px;
+    text-align: center;
+    margin:20px 0;
+    text-decoration: none;
+}
+.tologin>a{
+	text-decoration: none;
+	color:#2da6ff;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../../js/echarts.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="../../js/resultShow/leftIndex.js"></script>
+		<link rel="stylesheet" href="../../css/resultShow/leftIndex.css" />
+	</head>
+
+	<body>
+		<table id='controlStyleTable'>
+			<tr>
+				<td>标题</td>
+				<td><input type="text" id="title" value="test" /></td>
+			</tr>
+			
+			<tr>
+				<td>请选择结果表</td>
+				<td>
+					<select id="resultTable">
+					
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>展示图表类型</td>
+				<td>
+					<select id="option">
+						<option value="optionPie" selected="selected">饼形图</option>
+						<option value="optionLine">折线图</option>
+						<option value="optionBar">柱形图</option>
+					</select>
+				</td>
+			</tr>
+			
+			<table id="column">
+			</table >
+			
+			
+			<!--待添加的样式-->
+
+			<tr>
+				<td><input id="submit" type="button" value="确定" /></td>
+			</tr>
+		</table>
+	</body>
+
+</html>
