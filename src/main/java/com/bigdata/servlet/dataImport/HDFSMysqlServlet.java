@@ -73,9 +73,9 @@ public class HDFSMysqlServlet extends HttpServlet {
 		case "showMysqldata":
 			tableName = request.getParameter("tableName");
 			// 进入数据库
-			dbUtils.update("use graduation_project", null);
+			dbUtils.update("use graduation_project");
 			// 首先获取数据表的列名和列数
-			list = dbUtils.queryResult("desc " + tableName, null);
+			list = dbUtils.queryResult("desc " + tableName);
 			String colnames = "";
 
 			int count = 0;
@@ -87,7 +87,7 @@ public class HDFSMysqlServlet extends HttpServlet {
 				// 真正查询的结果(使用map结构进行保存，key列名，value数据)
 				List result = new ArrayList<>();
 				result.add(colnames);
-				list = dbUtils.queryResult("select * from " + request.getParameter("tableName") + " limit 10", null);
+				list = dbUtils.queryResult("select * from " + request.getParameter("tableName") + " limit 10");
 				while (list.next()) {
 					List tempList = new ArrayList<>();
 					for (int i = 1; i <= count; i++) {
@@ -108,9 +108,9 @@ public class HDFSMysqlServlet extends HttpServlet {
 
 		case "showMysqlTableInput":
 			// 进入数据库
-			dbUtils.update("use graduation_project", null);
+			dbUtils.update("use graduation_project");
 			// 查看所有的表
-			list = dbUtils.queryResult("show tables", null);
+			list = dbUtils.queryResult("show tables");
 			ArrayList tablelist = new ArrayList<>();
 			tablelist.add(" ");
 			try {
@@ -125,9 +125,9 @@ public class HDFSMysqlServlet extends HttpServlet {
 
 		case "showMysqlColumnInput":
 			// 进入数据库
-			dbUtils.update("use graduation_project", null);
+			dbUtils.update("use graduation_project");
 			// 出去表中所有的列
-			list = dbUtils.queryResult("desc " + request.getParameter("tableName"), null);
+			list = dbUtils.queryResult("desc " + request.getParameter("tableName"));
 			ArrayList tablelist2 = new ArrayList<>();
 			try {
 				while (list.next()) {

@@ -21,7 +21,7 @@ public class DataFLowDao {
 	 */
 	public DataFlow getFlow(int id) {
 		DataFlow dataFlow = null;
-		rs = dUtils.queryResult("SELECT * FROM data_flow WHERE id="+id, null);
+		rs = dUtils.queryResult("SELECT * FROM data_flow WHERE id="+id);
 		try {
 			rs.next();
 			dataFlow = new DataFlow(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10));
@@ -40,9 +40,8 @@ public class DataFLowDao {
 		rs = dUtils.queryResult(
 				"SELECT data_flow.id,data_flow.`name`,`user`.`name`,data_flow.flow_status,data_source.`name`,data_flow.flow_type,data_flow.hive_sql,`algorithm`.algorithm_name,data_flow.result_table,data_flow.result_path "
 						+ "FROM data_flow LEFT JOIN `user` ON data_flow.userId=`user`.id LEFT JOIN data_source ON data_source.id=data_flow.source_id LEFT JOIN `algorithm` ON data_flow.mr_id=`algorithm`.id "
-						+"where data_flow.userId="+userId
-						+ " GROUP BY data_flow.id",
-				null);
+						+"where data_flow.userId=?"
+						+ " GROUP BY data_flow.id",userId);
 		try {
 			while (rs.next()) {
 				list.add(new FlowList(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
@@ -60,7 +59,7 @@ public class DataFLowDao {
 	 * @return 状态
 	 */
 	public Integer delete(Integer id) {
-		return dUtils.update("DELETE FROM data_flow WHERE id =" + id, null) ? 1 : 0;
+		return dUtils.update("DELETE FROM data_flow WHERE id = ?", id) ? 1 : 0;
 	}
 	
 	/**
@@ -70,7 +69,7 @@ public class DataFLowDao {
 	 * @return 运行状态
 	 */
 	public Integer chageState(Integer id,Integer state) {
-		return dUtils.update("UPDATE data_flow SET flow_status=" + state + " WHERE id=" + id, null) ? 1 : 0;
+		return dUtils.update("UPDATE data_flow SET flow_status=?  WHERE id=?", state, id) ? 1 : 0;
 	}
 
 	/**
