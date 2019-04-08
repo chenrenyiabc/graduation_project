@@ -67,11 +67,11 @@ if(user == null){
 
 				<a class="left-nav-item" id="data_show"><i class="icon-bar-chart"></i>数据展示</a>
 
-				<a class="left-nav-item" id="azkaban" href="http://www.renyichen.club:22222" target="_blank"><i class="icon-bar-chart"></i>Azkaban</a>
+				<a class="left-nav-item" id="azkaban" href="http://www.renyichen.club:22222" target="_blank"><i class="icon-font"></i>Azkaban</a>
 
-				<a class="left-nav-item" id="hdfs" href="http://www.renyichen.club:50070" target="_blank"><i class="icon-bar-chart"></i>HDFS</a>
+				<a class="left-nav-item" id="hdfs" href="http://www.renyichen.club:50070" target="_blank"><i class="icon-h-sign"></i>HDFS</a>
 
-				<a class="left-nav-item" id="yarn" href="http://www.renyichen.club:8088" target="_blank"><i class="icon-bar-chart"></i>YARN</a>
+				<a class="left-nav-item" id="yarn" href="http://www.renyichen.club:8088" target="_blank"><i class="icon-flag"></i>YARN</a>
 				
 			</div>
 
