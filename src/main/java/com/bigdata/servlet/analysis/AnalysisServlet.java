@@ -54,7 +54,6 @@ public class AnalysisServlet extends HttpServlet {
 		//PropertiesUtil propertiesUtil = new PropertiesUtil("system.properties");
 		//String hostName = propertiesUtil.readPropertyByKey("hostName");
 		
-		//RemoteUtil remoteUtil = new RemoteUtil("SZ01", "bigdata", "bigdata");
 		HiveUtil2 hiveUtil = null;
 		
 		String method = request.getParameter("method");
