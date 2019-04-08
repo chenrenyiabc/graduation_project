@@ -10,7 +10,7 @@ import com.bigdata.bean.DataSource;
 import com.bigdata.dao.datasource.DataSourceDao;
 import com.bigdata.service.datagroup.DataGroupService;
 import com.bigdata.util.HDFSUtil;
-import com.bigdata.util.HiveUtil2;
+import com.bigdata.util.HiveUtil;
 import com.bigdata.util.PropertiesUtil;
 
 /**
@@ -105,7 +105,7 @@ public class DataSourceService {
 			flag = new HDFSUtil(new PropertiesUtil("system.properties").readPropertyByKey("hostName")).delete2(ds.getHdfsPath(), false);
 		}else{//hive类型
 			//切换到对应的数据库，并且执行删除表操作
-			flag = new HiveUtil2("user" + userId).delTable(ds.getTableName());
+			flag = new HiveUtil("user" + userId).delTable(ds.getTableName());
 		}
 		return flag;
 	}

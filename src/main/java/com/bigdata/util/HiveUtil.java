@@ -26,6 +26,11 @@ public class HiveUtil {
 		open();
 	}
 
+	public HiveUtil(String dbName){
+		open();
+		changeDatabase(dbName);
+	}
+
 	static {
 		try {
 			// 1.加载驱动
@@ -109,6 +114,7 @@ public class HiveUtil {
 		return list;
 	}
 
+
 	/**
 	 * 获取数据表前十条的预览数据
 	 * 
@@ -166,6 +172,18 @@ public class HiveUtil {
 	}
 
 	/**
+	 * 删除对应用户的表
+	 * */
+	public boolean delTable(String tableName){
+		try{
+			return statement.execute("drop table " + tableName);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
 	 * 获得查询sql执行后的返回结果
 	 * 
 	 * @param sql 用户自定义Hive_sql
@@ -181,6 +199,23 @@ public class HiveUtil {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	/**
+	 * 执行Hive语句
+	 * @param cmd 需要执行的命令
+	 * @return 是否成功
+	 */
+	public boolean excuteCmd(String cmd) {
+		boolean flag = false;
+		try {
+			statement.execute(cmd);
+			flag = true;
+			System.out.println("命令执行成功");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
 	}
 	
 	/**

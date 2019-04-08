@@ -1,8 +1,8 @@
-package com.bigdata.util.wwh;
+package com.bigdata.util;
 
 import java.util.Date;
 
-public class SelfUtil {
+public class TimeUtil {
 
 	/**
 	 * 返回一个时间戳的字符串，没有冒号

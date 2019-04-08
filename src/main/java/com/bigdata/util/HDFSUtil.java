@@ -318,7 +318,6 @@ public class HDFSUtil {
 		}
 	}
 	
-	/************************* modify by longxx **************************/
 	/**
 	 * 删除文件或者目录
 	 * @param path 文件或者目录的路径

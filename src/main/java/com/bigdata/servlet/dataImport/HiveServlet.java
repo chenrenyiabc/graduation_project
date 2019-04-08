@@ -20,12 +20,7 @@ import javax.servlet.http.Part;
 import com.bigdata.bean.DataSource;
 import com.bigdata.bean.User;
 import com.bigdata.service.datasource.DataSourceService;
-import com.bigdata.util.wwh.DBUtil;
-import com.bigdata.util.wwh.HDFSUtil;
-import com.bigdata.util.wwh.HiveUtil;
-import com.bigdata.util.wwh.PropertiesUtil;
-import com.bigdata.util.wwh.RemoteUtil;
-import com.bigdata.util.wwh.SelfUtil;
+import com.bigdata.util.*;
 
 import net.sf.json.JSONArray;
 
@@ -55,8 +50,8 @@ public class HiveServlet extends HttpServlet {
 		
 		//工具类
 		HiveUtil hiveUtil = new HiveUtil();
-		SelfUtil selfUtil = new SelfUtil();
-		DBUtil dbUtil = DBUtil.getDBUtil();
+		TimeUtil selfUtil = new TimeUtil();
+		DBUtils dbUtils = DBUtils.getDBUtils();
 		PropertiesUtil propertiesUtil = new PropertiesUtil("system.properties");
 		String host = propertiesUtil.readPropertyByKey("hostName");
 		String hostName = propertiesUtil.readPropertyByKey("hostName");
@@ -83,7 +78,7 @@ public class HiveServlet extends HttpServlet {
 			//展示Hive数据表
 			//切换到用户数据库
 			hiveUtil.changeDatabase("user"+userId);
-			resultList = hiveUtil.getTableList();
+			resultList = hiveUtil.getTaleList();
 			resultList.add(0, " "); //插入一个空格
 			response.getWriter().write(JSONArray.fromObject(resultList).toString());
 			break;
@@ -206,7 +201,7 @@ public class HiveServlet extends HttpServlet {
 			
 			//保存到数据元中
 			dateStr = new SimpleDateFormat(format).format(new Date()); 
-			dbUtil.executeUpdate("insert into data_source values (?,?,?,?,?,?,?,?,?)", new Object[] {null,user.getId(),selfCmd.split("--hive-table")[1].split(" ")[1]+selfUtil.getTime(),1,1,selfCmd.split("--hive-table")[1].split(" ")[1],selfCmd.split("--columns")[1].split(" ")[1],dateStr,null});		
+			dbUtils.update("insert into data_source values (?,?,?,?,?,?,?,?,?)", new Object[] {null,user.getId(),selfCmd.split("--hive-table")[1].split(" ")[1]+selfUtil.getTime(),1,1,selfCmd.split("--hive-table")[1].split(" ")[1],selfCmd.split("--columns")[1].split(" ")[1],dateStr,null});
 			
 			response.sendRedirect("main/dataImport/hive_show.jsp");
 			break;
@@ -250,7 +245,7 @@ public class HiveServlet extends HttpServlet {
 		default:
 			break;
 		}
-		dbUtil.close();
+		dbUtils.close();
 //		hiveUtil.close();
 	}
 

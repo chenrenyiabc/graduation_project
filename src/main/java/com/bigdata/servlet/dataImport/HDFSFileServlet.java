@@ -22,11 +22,7 @@ import com.bigdata.bean.DataSource;
 import com.bigdata.bean.DirFileBean;
 import com.bigdata.bean.User;
 import com.bigdata.service.datasource.DataSourceService;
-import com.bigdata.util.wwh.DBUtil;
-import com.bigdata.util.wwh.HDFSUtil;
-import com.bigdata.util.wwh.PropertiesUtil;
-import com.bigdata.util.wwh.RemoteUtil;
-import com.bigdata.util.wwh.SelfUtil;
+import com.bigdata.util.*;
 
 import net.sf.json.JSONArray;
 
@@ -57,7 +53,7 @@ public class HDFSFileServlet extends HttpServlet {
 		response.setContentType("text/html;CharSet=UTF-8"); 
 		// 进行从本地上传文件的操作
 		// 读取配置文件信息
-		SelfUtil selfUtil = new SelfUtil();
+		TimeUtil selfUtil = new TimeUtil();
 		PropertiesUtil propertiesUtil = new PropertiesUtil("system.properties");
 		String host = propertiesUtil.readPropertyByKey("hostName");
 		String hadoopUser = propertiesUtil.readPropertyByKey("hadoopUser");
@@ -66,7 +62,7 @@ public class HDFSFileServlet extends HttpServlet {
 		String HadoopDir = propertiesUtil.readPropertyByKey("userDataDir") + "/user" + userId;
 		HDFSUtil hdfsUtil = new HDFSUtil(host);
 		RemoteUtil remoteUtil = new RemoteUtil(host, hadoopUser, hadoopPwd); // 远程登录主机
-		DBUtil dbUtil = DBUtil.getDBUtil();
+		DBUtils dbUtils = DBUtils.getDBUtils();
 		
 		//常用定义
 		String format = "yyyy-MM-dd hh:mm:ss"; 
@@ -186,7 +182,7 @@ public class HDFSFileServlet extends HttpServlet {
 		default:
 			break;
 		}
-		dbUtil.close();
+		dbUtils.close();
 		
 
 	}

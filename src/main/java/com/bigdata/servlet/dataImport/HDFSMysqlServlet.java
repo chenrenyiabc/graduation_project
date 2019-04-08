@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bigdata.bean.User;
-import com.bigdata.util.wwh.DBUtil;
-import com.bigdata.util.wwh.PropertiesUtil;
-import com.bigdata.util.wwh.RemoteUtil;
-import com.bigdata.util.wwh.SelfUtil;
+import com.bigdata.util.DBUtils;
+import com.bigdata.util.PropertiesUtil;
+import com.bigdata.util.RemoteUtil;
+import com.bigdata.util.TimeUtil;
 
 import net.sf.json.JSONArray;
 
@@ -45,8 +45,8 @@ public class HDFSMysqlServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;CharSet=UTF-8");
 
-		SelfUtil selfUtil = new SelfUtil();
-		DBUtil dbUtil = DBUtil.getDBUtil();
+		TimeUtil selfUtil = new TimeUtil();
+		DBUtils dbUtils = DBUtils.getDBUtils();
 		PropertiesUtil propertiesUtil = new PropertiesUtil("system.properties");
 
 		String hostName = propertiesUtil.readPropertyByKey("hostName");
@@ -73,9 +73,9 @@ public class HDFSMysqlServlet extends HttpServlet {
 		case "showMysqldata":
 			tableName = request.getParameter("tableName");
 			// 进入数据库
-			dbUtil.executeUpdate("use graduation_project", null);
+			dbUtils.update("use graduation_project", null);
 			// 首先获取数据表的列名和列数
-			list = dbUtil.executeQuery("desc " + tableName, null);
+			list = dbUtils.queryResult("desc " + tableName, null);
 			String colnames = "";
 
 			int count = 0;
@@ -87,7 +87,7 @@ public class HDFSMysqlServlet extends HttpServlet {
 				// 真正查询的结果(使用map结构进行保存，key列名，value数据)
 				List result = new ArrayList<>();
 				result.add(colnames);
-				list = dbUtil.executeQuery("select * from " + request.getParameter("tableName") + " limit 10", null);
+				list = dbUtils.queryResult("select * from " + request.getParameter("tableName") + " limit 10", null);
 				while (list.next()) {
 					List tempList = new ArrayList<>();
 					for (int i = 1; i <= count; i++) {
@@ -108,9 +108,9 @@ public class HDFSMysqlServlet extends HttpServlet {
 
 		case "showMysqlTableInput":
 			// 进入数据库
-			dbUtil.executeUpdate("use graduation_project", null);
+			dbUtils.update("use graduation_project", null);
 			// 查看所有的表
-			list = dbUtil.executeQuery("show tables", null);
+			list = dbUtils.queryResult("show tables", null);
 			ArrayList tablelist = new ArrayList<>();
 			tablelist.add(" ");
 			try {
@@ -125,9 +125,9 @@ public class HDFSMysqlServlet extends HttpServlet {
 
 		case "showMysqlColumnInput":
 			// 进入数据库
-			dbUtil.executeUpdate("use graduation_project", null);
+			dbUtils.update("use graduation_project", null);
 			// 出去表中所有的列
-			list = dbUtil.executeQuery("desc " + request.getParameter("tableName"), null);
+			list = dbUtils.queryResult("desc " + request.getParameter("tableName"), null);
 			ArrayList tablelist2 = new ArrayList<>();
 			try {
 				while (list.next()) {
@@ -161,7 +161,7 @@ public class HDFSMysqlServlet extends HttpServlet {
 			response.sendRedirect("main/dataImport/hdfs_show.jsp");
 			//保存到数据元中
 			dateStr = new SimpleDateFormat(format).format(new Date()); 
-			dbUtil.executeUpdate("insert into data_source values (?,?,?,?,?,?,?,?,?)", new Object[] {null,user.getId(),targetDir+selfUtil.getTime(),1,0,null,null,dateStr,targetDir});
+			dbUtils.update("insert into data_source values (?,?,?,?,?,?,?,?,?)", new Object[] {null,user.getId(),targetDir+selfUtil.getTime(),1,0,null,null,dateStr,targetDir});
 			
 			response.sendRedirect("main/dataImport/hdfs_show.jsp");
 			break;
@@ -174,7 +174,7 @@ public class HDFSMysqlServlet extends HttpServlet {
 			
 			//保存到数据元中
 			dateStr = new SimpleDateFormat(format).format(new Date()); 
-			dbUtil.executeUpdate("insert into data_source values (?,?,?,?,?,?,?,?,?)", new Object[] {null,user.getId(),selfCmd.split("--target-dir")[1].split(" ")[1]+selfUtil.getTime(),1,0,null,null,dateStr,selfCmd.split("--target-dir")[1].split(" ")[1]});
+			dbUtils.update("insert into data_source values (?,?,?,?,?,?,?,?,?)", new Object[] {null,user.getId(),selfCmd.split("--target-dir")[1].split(" ")[1]+selfUtil.getTime(),1,0,null,null,dateStr,selfCmd.split("--target-dir")[1].split(" ")[1]});
 			
 			response.sendRedirect("main/dataImport/hdfs_show.jsp");
 			break;
@@ -183,7 +183,7 @@ public class HDFSMysqlServlet extends HttpServlet {
 			break;
 		}
 		
-		dbUtil.close();
+		dbUtils.close();
 
 	}
 

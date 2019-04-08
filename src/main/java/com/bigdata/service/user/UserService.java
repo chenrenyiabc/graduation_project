@@ -5,7 +5,7 @@ import com.bigdata.bean.User;
 import com.bigdata.dao.user.UserDao;
 import com.bigdata.service.datagroup.DataGroupService;
 import com.bigdata.util.HDFSUtil;
-import com.bigdata.util.HiveUtil2;
+import com.bigdata.util.HiveUtil;
 import com.bigdata.util.PropertiesUtil;
 
 public class UserService {
@@ -58,8 +58,8 @@ public class UserService {
 			hdfsUtil.mkdirs2(propertiesUtil.readPropertyByKey("userDataDir") + id, true);
 			
 			//创建hive库
-			HiveUtil2 hiveUtil = new HiveUtil2();
-			hiveUtil.createDB("user" + id);
+			HiveUtil hiveUtil = new HiveUtil();
+			hiveUtil.changeDatabase("user" + id);
 		}
 		
 		return result;

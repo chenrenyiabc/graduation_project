@@ -7,11 +7,11 @@ import java.util.List;
 
 import com.bigdata.bean.DataFlow;
 import com.bigdata.bean.FlowList;
-import com.bigdata.util.wwh.DBUtil;
+import com.bigdata.util.DBUtils;
 
 public class DataFLowDao {
 
-	private DBUtil dUtil = DBUtil.getDBUtil();
+	private DBUtils dUtils = DBUtils.getDBUtils();
 	private ResultSet rs = null;
 
 	/**
@@ -21,7 +21,7 @@ public class DataFLowDao {
 	 */
 	public DataFlow getFlow(int id) {
 		DataFlow dataFlow = null;
-		rs = dUtil.executeQuery("SELECT * FROM data_flow WHERE id="+id, null);
+		rs = dUtils.queryResult("SELECT * FROM data_flow WHERE id="+id, null);
 		try {
 			rs.next();
 			dataFlow = new DataFlow(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10));
@@ -33,12 +33,11 @@ public class DataFLowDao {
 
 	/**
 	 * 获取流程列表
-	 * @param page 页数，一页10列数据
 	 * @return List<FlowList>
 	 */
 	public List<FlowList> getFlowList(int userId) {
 		List<FlowList> list = new ArrayList<>();
-		rs = dUtil.executeQuery(
+		rs = dUtils.queryResult(
 				"SELECT data_flow.id,data_flow.`name`,`user`.`name`,data_flow.flow_status,data_source.`name`,data_flow.flow_type,data_flow.hive_sql,`algorithm`.algorithm_name,data_flow.result_table,data_flow.result_path "
 						+ "FROM data_flow LEFT JOIN `user` ON data_flow.userId=`user`.id LEFT JOIN data_source ON data_source.id=data_flow.source_id LEFT JOIN `algorithm` ON data_flow.mr_id=`algorithm`.id "
 						+"where data_flow.userId="+userId
@@ -61,7 +60,7 @@ public class DataFLowDao {
 	 * @return 状态
 	 */
 	public Integer delete(Integer id) {
-		return dUtil.executeUpdate("DELETE FROM data_flow WHERE id =" + id, null);
+		return dUtils.update("DELETE FROM data_flow WHERE id =" + id, null) ? 1 : 0;
 	}
 	
 	/**
@@ -71,7 +70,7 @@ public class DataFLowDao {
 	 * @return 运行状态
 	 */
 	public Integer chageState(Integer id,Integer state) {
-		return dUtil.executeUpdate("UPDATE data_flow SET flow_status="+state+" WHERE id=" + id, null);
+		return dUtils.update("UPDATE data_flow SET flow_status=" + state + " WHERE id=" + id, null) ? 1 : 0;
 	}
 
 	/**
@@ -82,7 +81,7 @@ public class DataFLowDao {
 			if (rs != null) {
 				rs.close();
 			}
-			dUtil.close();
+			dUtils.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

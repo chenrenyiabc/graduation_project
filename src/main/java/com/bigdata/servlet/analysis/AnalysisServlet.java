@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bigdata.bean.DataFlow;
 import com.bigdata.bean.User;
 import com.bigdata.util.DBUtils;
-import com.bigdata.util.HiveUtil2;
+import com.bigdata.util.HiveUtil;
 import com.bigdata.util.PropertiesUtil;
 import com.bigdata.util.RemoteUtil;
 
@@ -54,7 +54,7 @@ public class AnalysisServlet extends HttpServlet {
 		//PropertiesUtil propertiesUtil = new PropertiesUtil("system.properties");
 		//String hostName = propertiesUtil.readPropertyByKey("hostName");
 		
-		HiveUtil2 hiveUtil = null;
+		HiveUtil hiveUtil = null;
 		
 		String method = request.getParameter("method");
 		int userId = ((User)request.getSession().getAttribute("user")).getId();
@@ -129,15 +129,15 @@ public class AnalysisServlet extends HttpServlet {
 				out.write("success");
 			}
 		}else if("query_hql_flow".equals(method)) {
-			hiveUtil = new HiveUtil2();
-			hiveUtil.changeDB("user"+userId);
+			hiveUtil = new HiveUtil();
+			hiveUtil.changeDatabase("user"+userId);
 			List<String> tableList = hiveUtil.getTaleList();
 			System.out.println(tableList);
 			
 			out.write(JSONArray.fromObject(tableList).toString());
 		}else if("query_table_field".equals(method)) {
-			hiveUtil = new HiveUtil2();
-			hiveUtil.changeDB("user"+userId);
+			hiveUtil = new HiveUtil();
+			hiveUtil.changeDatabase("user"+userId);
 			String tableName = request.getParameter("tableName");
 			List<String> tableFieldList = hiveUtil.getTableInfo(tableName);
 			for (String string : tableFieldList) {
@@ -172,8 +172,8 @@ public class AnalysisServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			hiveUtil = new HiveUtil2();
-			hiveUtil.changeDB("user" + userId);
+			hiveUtil = new HiveUtil();
+			hiveUtil.changeDatabase("user" + userId);
 			List<String> hqlTableList = hiveUtil.getTaleList();
 
 			request.getSession().setAttribute("hqlTableList", hqlTableList);
@@ -211,8 +211,8 @@ public class AnalysisServlet extends HttpServlet {
 				out.write("success");
 			}
 		}else if("tohql".equals(method)) {
-			hiveUtil = new HiveUtil2();
-			hiveUtil.changeDB("user"+userId);
+			hiveUtil = new HiveUtil();
+			hiveUtil.changeDatabase("user"+userId);
 			List<String> tableList = hiveUtil.getTaleList();
 			System.out.println(tableList);
 			List<String> firstTableField = null;
