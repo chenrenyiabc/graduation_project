@@ -17,7 +17,6 @@ import com.bigdata.bean.DataFlow;
 import com.bigdata.bean.FlowList;
 import com.bigdata.bean.User;
 import com.bigdata.dao.DataFLowDao;
-import com.bigdata.util.wwh.DBUtil;
 import com.google.gson.Gson;
 
 @WebServlet("/GetFlowlist")
