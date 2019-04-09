@@ -41,6 +41,7 @@ public class AlgorithmServlet extends HttpServlet {
 
         if("query_algorithm".equals(method)){
             List<Algorithm> list = as.getAlgorithm();
+            System.out.println(JSONArray.fromObject(list).toString());
             out.write(JSONArray.fromObject(list).toString());
         }
 

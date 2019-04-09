@@ -16,6 +16,8 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/algorithm/algorithm.css" />
+
+
 </head>
 <body>
 <div class="container">
@@ -31,10 +33,7 @@
         </thead>
         <tbody id="tbale_body"></tbody>
     </table>
-
-
 </div>
-
 
 </body>
 </html>

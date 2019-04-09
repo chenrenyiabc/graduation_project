@@ -10,10 +10,8 @@ jQuery(function(){
 	//左侧导航栏点击
 	jQuery(".left>a").click(function(){
 		var id = jQuery(this).attr("id");
-		console.log(id);
 		for(var key in urls){
 			if(id === key){
-				console.log("yes");
 				jQuery(".left>a").removeClass("current");
 				jQuery(this).addClass("current");
 			}

@@ -53,9 +53,9 @@ function loadFlowList() {
                 <td>` + data[x].hive_sql + `</td>
                 <td>` + data[x].result_table + `</td>
                 <td>
-                    <button type="button" class="btn btn-default" onclick="fget('RunFlow?id=` + data[x].id + `', info => window.location.reload())">使用</button>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" onclick="modify(` + data[x].id + `,'` + data[x].flow_type + `')">修改</button>
-                    <button type="button" class="btn btn-default" onclick="del(` + data[x].id + `)">删除</button>
+                    <button type="button" class="btn btn-success" onclick="fget('RunFlow?id=` + data[x].id + `', info => window.location.reload())">使用</button>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" onclick="modify(` + data[x].id + `,'` + data[x].flow_type + `')">修改</button>
+                    <button type="button" class="btn btn-danger" onclick="del(` + data[x].id + `)">删除</button>
                 </td>
             </tr>`
         }
