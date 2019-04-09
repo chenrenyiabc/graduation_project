@@ -61,6 +61,8 @@ if(user == null){
 
 				<a class="left-nav-item" id="data_import"><i class="icon-cloud-upload"></i>数据导入</a>
 
+				<a class="left-nav-item" id="algorithm_manage"><i class="icon-cog"></i>算法管理</a>
+
 				<a class="left-nav-item" id="data_analyze"><i class="icon-signal"></i>数据分析</a>
 
 				<a class="left-nav-item" id="flow_manage"><i class="icon-tasks"></i>流程管理</a>
