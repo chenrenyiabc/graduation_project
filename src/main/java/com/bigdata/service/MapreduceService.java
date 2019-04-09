@@ -2,7 +2,7 @@ package com.bigdata.service;
 
 import com.bigdata.bean.Algorithm;
 import com.bigdata.bean.DataSource;
-import com.bigdata.dao.AlgorithmDao;
+import com.bigdata.dao.algorithm.AlgorithmDao;
 import com.bigdata.dao.datasource.DataSourceDao;
 import com.bigdata.util.PropertiesUtil;
 import com.bigdata.util.RemoteUtil;

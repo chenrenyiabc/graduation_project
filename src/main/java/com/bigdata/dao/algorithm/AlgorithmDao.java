@@ -1,7 +1,9 @@
-package com.bigdata.dao;
+package com.bigdata.dao.algorithm;
 
 import com.bigdata.bean.Algorithm;
 import com.bigdata.util.DBUtils;
+
+import java.util.List;
 
 public class AlgorithmDao {
 
@@ -16,8 +18,13 @@ public class AlgorithmDao {
 		return util.queryObject("select * from algorithm where id=?", Algorithm.class, mr_id);
 	}
 	
+
+
+    public List<Algorithm> getAlgorithm() {
+		return util.query("select * from algorithm", Algorithm.class);
+    }
+
 	public void close(){
 		util.close();
 	}
-
 }
