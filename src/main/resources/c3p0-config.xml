@@ -5,7 +5,7 @@
 			com.mysql.jdbc.Driver
 		</property>
 		<property name="jdbcUrl">
-			jdbc:mysql://alihadoop01:3306/graduation_project?autoReconnect=true&amp;autoReconnectForPools=true
+			jdbc:mysql://alihadoop01:3306/graduation_project?autoReconnect=true&amp;failOverReadOnly=false
 		</property>
 		<property name="user">
 			root
