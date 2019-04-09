@@ -20,10 +20,10 @@
 <body>
 <div class="container">
     <ul class="nav nav-tabs">
-        <li role="presentation" id='algorithm_show' class="algorithm_show"><a href="main/algorothmManage/algorithm.jsp">查看</a></li>
-        <li role="presentation" id='algorithm_new' class="algorithm_new active"><a href="main/algorothmManage/algorithm_new.jsp">新增</a></li>
-        <li role="presentation" id='algorithm_modify' class="algorithm_modify"><a href="main/algorothmManage/algorithm_modify.jsp">修改</a></li>
-        <li role="presentation" id='algorithm_delete' class="algorithm_delete"><a href="main/algorothmManage/algorithm_delete.jsp">删除</a></li>
+        <li role="presentation" id='algorithm_show' class="algorithm_show"><a href="main/algorithmManage/algorithm.jsp">查看</a></li>
+        <li role="presentation" id='algorithm_new' class="algorithm_new active"><a href="main/algorithmManage/algorithm_new.jsp">新增</a></li>
+        <li role="presentation" id='algorithm_modify' class="algorithm_modify"><a href="main/algorithmManage/algorithm_modify.jsp">修改</a></li>
+        <li role="presentation" id='algorithm_delete' class="algorithm_delete"><a href="main/algorithmManage/algorithm_delete.jsp">删除</a></li>
     </ul>
 
     <div id="showmsg" class="showmsg" style="display:none; position:absolute">
