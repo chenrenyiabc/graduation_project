@@ -8,6 +8,10 @@ import java.util.List;
 public class AlgorithmDao {
 
 	private DBUtils util = DBUtils.getDBUtils();
+
+	public void close(){
+		util.close();
+	}
 	
 	/**
 	 * 通过算法id获取算法信息
@@ -24,7 +28,18 @@ public class AlgorithmDao {
 		return util.query("select * from algorithm", Algorithm.class);
     }
 
-	public void close(){
-		util.close();
+
+	public Boolean updateAlgorithm(String algoId, String algorithm_name, String algorithm_path) {
+		return util.update("update algorithm set algorithm_name=?,algorithm_path=? where id=?", algorithm_name, algorithm_path, algoId);
+	}
+
+	public Boolean newAlgorithm(String algorithm_name, String algorithm_path) {
+		return util.update("insert into algorithm values(null,?,?)", algorithm_name, algorithm_path);
+	}
+
+
+
+	public Boolean deleteAlgorithm(String algoId) {
+		return util.update("delete from algorithm where id=?", algoId);
 	}
 }
