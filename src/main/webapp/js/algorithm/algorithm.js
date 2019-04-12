@@ -75,7 +75,7 @@ function deleteFunction(id){
         success : function (data) {
 
             $("#deleteMain").html("");
-            $("#deleteMain").append("<h2>确定要删除该算法吗?</h2>" +
+            $("#deleteMain").append("<div style='margin:0 200px'><h2>确定要删除该算法吗?</h2></div>" +
                 "<table class='table table-hover'>" +
                 "<tr>" +
                 "<th>算法ID</th>" +
@@ -88,11 +88,11 @@ function deleteFunction(id){
                 "<td>" + data[0]['algorithm_path'] + "</td>" +
                 "</tr>" +
                 "</table>" +
-                "<form action='AlgorithmServlet?method=deleteAlgorithm' method='post'>" +
+                "<div style='margin:0 200px'><form action='AlgorithmServlet?method=deleteAlgorithm' method='post'>" +
                 "<input type='hidden' name='algoId' value='"+data[0]['id']+"' />" +
-                "<button type='submit' class='btn btn-warning' name='submit'>删除</button>" +
-                "</form>" +
-                "<button type='button' class='btn btn-success' data-dismiss='modal'>取消</button>");
+                "<button type='submit' class='btn btn-warning' style='margin-right: 10px' name='submit'>删除</button>" +
+                "<button type='button' class='btn btn-success' data-dismiss='modal'>取消</button>" +
+                "</form></div>");
         }
     })
 }
