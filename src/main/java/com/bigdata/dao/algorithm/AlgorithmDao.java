@@ -3,6 +3,9 @@ package com.bigdata.dao.algorithm;
 import com.bigdata.bean.Algorithm;
 import com.bigdata.util.DBUtils;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlgorithmDao {
@@ -41,5 +44,20 @@ public class AlgorithmDao {
 
 	public Boolean deleteAlgorithm(String algoId) {
 		return util.update("delete from algorithm where id=?", algoId);
+	}
+
+	public List<String> queryAlgoName() {
+		ResultSet rs = util.queryResult("select algorithm_name from algorithm");
+		List<String> algorithm = new ArrayList<>();
+		try {
+			while(rs.next()) {
+				algorithm.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return algorithm;
 	}
 }

@@ -16,7 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bigdata.bean.DataFlow;
+import com.bigdata.bean.DataSource;
 import com.bigdata.bean.User;
+import com.bigdata.service.algorithm.AlgorithmService;
+import com.bigdata.service.analysis.AnalysisService;
 import com.bigdata.util.DBUtils;
 import com.bigdata.util.HiveUtil;
 import com.bigdata.util.PropertiesUtil;
@@ -51,6 +54,9 @@ public class AnalysisServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		DBUtils dbUtil = DBUtils.getDBUtils();
+		AnalysisService analysisService = new AnalysisService();
+		AlgorithmService algorithmService = new AlgorithmService();
+
 		//PropertiesUtil propertiesUtil = new PropertiesUtil("system.properties");
 		//String hostName = propertiesUtil.readPropertyByKey("hostName");
 		
@@ -60,31 +66,9 @@ public class AnalysisServlet extends HttpServlet {
 		int userId = ((User)request.getSession().getAttribute("user")).getId();
 		if("query_mr_flow".equals(method)) {
 			Map<String, List> map = new HashMap<>();
-			String sql1 = "select name from data_source where type=0 and userid=?";
-			ResultSet rs1 = dbUtil.queryResult(sql1,userId);
-			List<String> dataSource = new ArrayList<>();
-			try {
-				while(rs1.next()) {
-					dataSource.add(rs1.getString(1));
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			List<String> dataSource = analysisService.queryDataSource(userId);
+			List<String> algorithm = algorithmService.queryAlgoName();
 			map.put("dataSource", dataSource);
-			
-			String sql2 = "select algorithm_name from algorithm";
-			ResultSet rs2 = dbUtil.queryResult(sql2);
-			List<String> algorithm = new ArrayList<>();
-			try {
-				while(rs2.next()) {
-					algorithm.add(rs2.getString(1));
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			map.put("algorithm", algorithm);
 			
 			out.write(JSONArray.fromObject(map).toString());
@@ -106,8 +90,8 @@ public class AnalysisServlet extends HttpServlet {
 			// hive计算流程保存在hdfs目录中，如果此项不为空，则需在hdfs中创建文件
 			String result_path = request.getParameter("result_path");
 			
-			//String sql = "insert into data_flow values(null,'"+ name +"',"+ userId +","+ flow_status +","+ source_id +","+ flow_type +",null,"+ mr_id +",null,'"+ result_path +"')";
 			String sql = "insert into data_flow values(null,?,?,?,?,?,?,?,?,?)";
+
 			boolean result = dbUtil.update(sql, new Object[]{name,userId,flow_status,source_id,flow_type,hive_sql,id_int_string ? mr_id_string : mr_id_int,result_table,result_path});
 			if(result) {
 				out.write("success");
@@ -182,9 +166,9 @@ public class AnalysisServlet extends HttpServlet {
 			request.getSession().setAttribute("algorithm", algorithm);
 			request.getSession().setAttribute("flowId", flowId);
 			if(dataFlow.getFlow_type() == 0) {
-				response.sendRedirect("analysis/modifyMRAnalysis.jsp");
+				response.sendRedirect("main/analysis/modifyMRAnalysis.jsp");
 			}else {
-				response.sendRedirect("analysis/modifyHQLAnalysis.jsp");
+				response.sendRedirect("main/analysis/modifyHQLAnalysis.jsp");
 			}
 			
 		}else if("update_mr_flow".equals(method)) {
@@ -197,7 +181,7 @@ public class AnalysisServlet extends HttpServlet {
 			System.out.println(flowId + " " + process_name + " " + chooseData + " " + chooseAlgorithm + " " + resultPath);
 			String sql = "update data_flow set name=?,source_id=?,mr_id=?,result_path=? where id=?";
 			dbUtil.update(sql, process_name, chooseData, chooseAlgorithm, resultPath, flowId);
-			out.write("<script>alert('修改MR流程成功！');location.href='flowManage/flowManage.html'</script>");
+			out.write("<script>alert('修改MR流程成功！');location.href='main/flowManage/flowManage.html'</script>");
 		}else if("update_hql_flow".equals(method)) {
 			String flowId = request.getParameter("flowId");
 			String name = request.getParameter("name");

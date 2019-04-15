@@ -30,8 +30,7 @@ public class UserRegist extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		User user = RequestUtil.get(User.class, req);
-		System.out.println(req.getParameter("name"));
-		System.out.println(user);
+
 		String password2 = req.getParameter("password2");
 		int result = 1;//0 成功，1失败，2重复
 		if(password2 != null && password2.equals(user.getPassword())){

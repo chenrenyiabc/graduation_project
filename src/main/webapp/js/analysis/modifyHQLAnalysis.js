@@ -101,7 +101,7 @@ $(function(){
 				console.log(data);
 				if(data == "success"){
 					alert('修改HQL流程成功！');
-					window.location.href='flowManage/flowManage.html';
+					window.location.href='main/flowManage/flowManage.html';
 				}
 				
 			}

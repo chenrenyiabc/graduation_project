@@ -15,11 +15,11 @@ function fajax(method, url, type, fun, syn) {
 }
 
 function fget(url, fun) {
-    return fajax("get", "../" + url, null, fun, true);
+    return fajax("get", "../../" + url, null, fun, true);
 }
 
 function fgetJSON(url, fun) {
-    return fajax("get", "../" + url, "json", fun, true);
+    return fajax("get", "../../" + url, "json", fun, true);
 }
 
 //////////////////
@@ -65,7 +65,7 @@ function loadFlowList() {
 
 function modify(fid, type) {
     document.getElementById("myModalLabel").innerText = "修改" + type + "流程";
-    document.getElementById("modifyFlowFam").src = "../AnalysisServlet?method=query_exist_flow&flowId=" + fid
+    document.getElementById("modifyFlowFam").src = "../../AnalysisServlet?method=query_exist_flow&flowId=" + fid
 }
 
 //删除流程

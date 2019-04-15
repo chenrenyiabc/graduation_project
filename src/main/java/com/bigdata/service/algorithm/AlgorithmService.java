@@ -28,4 +28,8 @@ public class AlgorithmService {
     public Boolean deleteAlgorithm(String algoId) {
         return ad.deleteAlgorithm(algoId);
     }
+
+    public List<String> queryAlgoName() {
+        return ad.queryAlgoName();
+    }
 }
