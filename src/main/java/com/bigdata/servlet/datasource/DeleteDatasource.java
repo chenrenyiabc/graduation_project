@@ -35,7 +35,7 @@ public class DeleteDatasource extends HttpServlet{
 		DataSourceService service = new DataSourceService();
 		boolean flag = service.deleteDataSource(id, user.getId());
 		Map<String, Object> result = new HashMap<>();
-		//如果移动成功，重新查询分组信息和数据源列表//放置于session中
+		//如果删除成功，重新查询分组信息和数据源列表//放置于session中
 		if(flag){
 			Map<String, List<DataSource>> datasources = service.getDataSourceList(user.getId());
 			req.getSession().setAttribute("datasources", datasources);

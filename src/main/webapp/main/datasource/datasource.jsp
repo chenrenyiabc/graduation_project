@@ -13,18 +13,14 @@ if(user == null){
 	return;
 }
 List<DataGroup> list = (List<DataGroup>)session.getAttribute("groups");
-//if(list == null){
-	DataGroupService dgService = new DataGroupService();
-	list = dgService.getDataGroups(user.getId());
-	session.setAttribute("groups", list);
-	dgService.close();
-//}
+DataGroupService dgService = new DataGroupService();
+list = dgService.getDataGroups(user.getId());
+session.setAttribute("groups", list);
+dgService.close();
 Map<String, List<DataSource>> datasources = (Map<String, List<DataSource>>)session.getAttribute("datasources");
 DataSourceService dsService = new DataSourceService();
-//if(datasources == null){
-	datasources = dsService.getDataSourceList(user.getId());
-	session.setAttribute("datasources", datasources);
-//}
+datasources = dsService.getDataSourceList(user.getId());
+session.setAttribute("datasources", datasources);
 String datasourceStr = dsService.getDataSourceListStr(datasources);
 System.out.println(datasourceStr);
 %>
