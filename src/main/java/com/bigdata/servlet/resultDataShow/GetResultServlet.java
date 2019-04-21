@@ -67,9 +67,7 @@ public class GetResultServlet extends HttpServlet {
 		switch (method) {
 		case "path":
 			path = path +"user" + userId + "/" +name + "/part-r-00000";
-			System.out.println("path:" + path);
 			result = hdfsUtil.read(path);
-			System.out.println("result:" + result);
 			String[] lines = result.split("\n");		
 			length = lines[0].split("\t").length;
 			lists = new ArrayList[length];
@@ -107,8 +105,6 @@ public class GetResultServlet extends HttpServlet {
 		default:
 			break;
 		}
-		System.out.println();
-		System.out.println(JSONObject.fromObject(map).toString());
 		out.print(JSONObject.fromObject(map).toString());
 	}
 

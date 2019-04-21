@@ -28,6 +28,7 @@
                 <th>算法ID</th>
                 <th>算法名</th>
                 <th>算法路径</th>
+                <th>算法主类</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -69,10 +70,12 @@
             <div class="modal-body" id="newMain" style="height: 400px;">
                 <h2>添加算法</h2>
                 <form action="AlgorithmServlet?method=newAlgorithm" method="post">
-                    请重新输入算法名：
+                    请输入算法名：
                     <input type='text' class='algorithm_name' name='algorithm_name' /><br /><br />
-                    请重新输入算法路径：
+                    请输入算法路径：
                     <input type='text' class='algorithm_path' name='algorithm_path' /><br /><br />
+                    请输入算法主类：
+                    <input type='text' class='algorithm_class' name='algorithm_class' /><br /><br />
 
                     <input type='submit' class='submit' name='submit' value='保存新的算法' />
                 </form>

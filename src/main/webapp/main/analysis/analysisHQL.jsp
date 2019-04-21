@@ -21,7 +21,7 @@
 
 <div class="container">
 	<ul class="nav nav-tabs">
-  		<li role="presentation" class="mapreduce"><a href="analysis/analysisMR.jsp">MapReduce</a></li>
+  		<li role="presentation" class="mapreduce"><a href="main/analysis/analysisMR.jsp">MapReduce</a></li>
   		<li role="presentation" class="hql active"><a href="javascript:void(0)">HQL</a></li>
 	</ul>
 	<div id="showmsg" class="showmsg" style="position:absolute">

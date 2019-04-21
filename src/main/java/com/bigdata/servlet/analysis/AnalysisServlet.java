@@ -205,7 +205,7 @@ public class AnalysisServlet extends HttpServlet {
 			}
 			request.getSession().setAttribute("firstTableField", firstTableField);
 			request.getSession().setAttribute("tableList", tableList);
-			response.sendRedirect("analysis/analysisHQL.jsp");
+			response.sendRedirect("main/analysis/analysisHQL.jsp");
 		}else if("query_source_id".equals(method)) {
 			String source_name = request.getParameter("source_name");
 			String sql = "select id from data_source where name =? and userid=?";

@@ -259,7 +259,6 @@ public class HDFSUtil {
 			String temp = "";
 			while ((temp = bufferedReader.readLine()) != null) {
 				stringBuffer.append(temp + "\n");
-				System.out.println(temp);
 			}
 			bufferedReader.close();
 			fsDataInputStream.close();

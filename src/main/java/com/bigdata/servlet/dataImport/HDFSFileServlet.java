@@ -96,7 +96,15 @@ public class HDFSFileServlet extends HttpServlet {
 			// 使用Part对象接受文件(把文件保存到本地的临时目录)先用windows进行测试
 			Part part = request.getPart("uploadFile");
 			String fileName = "" + userId + selfUtil.getTime();
-			String filePath = File.separator + "home" + File.separator + "chenry" + File.separator + fileName; // 设置上传的文件路径及名称
+			String system = System.getProperty("os.name");
+			String filePath = "";
+			if (system.toLowerCase().startsWith("windows")){
+				filePath = "C:/Users/enyin/Desktop" + File.separator + fileName;
+			}else if(system.toLowerCase().startsWith("linux")){
+				filePath = File.separator + "home" + File.separator + "chenry" + File.separator + fileName; // 设置上传的文件路径及名称
+			}else {
+				filePath = "";
+			}
 			part.write(filePath);
 			// 把本地的临时文件上传至hdfs(hdfs的目录需存在，否则会认为是文件)
 			// 参数设置是否删除原文件，是否覆盖目标文件
@@ -104,12 +112,9 @@ public class HDFSFileServlet extends HttpServlet {
 			//判断是否上传成功
 			flag = hdfsUtil.upLoad(true, isOverWrite, new String[] { filePath }, request.getParameter("dirName") + "/" + request.getParameter("fileNewName"));
 			String fileUploadisSuccess = flag == true ? "数据上传成功" : "数据上传失败";
-//			request.setAttribute("fileUploadisSuccess", fileUploadisSuccess);
-//			request.getRequestDispatcher("frame_showmsg.jsp").forward(request, response);
 
 			//保存到数据元中
 			dateStr = new SimpleDateFormat(format).format(new Date()); 
-//			dbUtil.executeUpdate("insert into data_source values (?,?,?,?,?,?,?,?,?)", new Object[] {null,user.getId(),request.getParameter("fileNewName")+selfUtil.getTime(),1,0,null,null,dateStr,request.getParameter("dirName") + "/" + request.getParameter("fileNewName")});
 			DataSourceService dService2 = new DataSourceService();
 			dService2.addDataSource(new DataSource(user.getId(), request.getParameter("fileNewName")+selfUtil.getTime(), 0, dateStr, request.getParameter("dirName") + "/" + request.getParameter("fileNewName")));
 			dService2.close();
@@ -142,7 +147,7 @@ public class HDFSFileServlet extends HttpServlet {
 			response.getWriter().write(JSONArray.fromObject(mapDirList).toString());
 			break;
 			
-		case "getMrsourceFileAlgorithm":
+		/*case "getMrsourceFileAlgorithm":
 			// 获取用用可以进行Mr的数据和Mr算法
 			String HdfsInputFile = propertiesUtil.readPropertyByKey("dataInputHdfs");
 			//获取该目录下所有可进行Mr算法的数据文件夹名称(Mr程序输入必须是文件夹，执行文件夹下所有数据)
@@ -178,7 +183,7 @@ public class HDFSFileServlet extends HttpServlet {
 //			System.out.println(result);
 			request.setAttribute("result", result.replaceAll("\n", "<br/>"));
 			request.getRequestDispatcher("hdfs_show.jsp").forward(request, response);
-			response.getWriter().write(result);
+			response.getWriter().write(result);*/
 		default:
 			break;
 		}

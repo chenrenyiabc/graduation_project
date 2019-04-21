@@ -67,8 +67,9 @@ public class AlgorithmServlet extends HttpServlet {
             String algoId = request.getParameter("algoId");
             String algorithm_name = request.getParameter("algorithm_name");
             String algorithm_path = request.getParameter("algorithm_path");
-            System.out.println("[" + algoId + " " + algorithm_name + " " + algorithm_path + "]");
-            boolean result = as.updateAlgorithm(algoId, algorithm_name, algorithm_path);
+            String algorithm_class = request.getParameter("algorithm_class");
+            System.out.println("[" + algoId + " " + algorithm_name + " " + algorithm_path + " " + algorithm_class + "]");
+            boolean result = as.updateAlgorithm(algoId, algorithm_name, algorithm_path, algorithm_class);
             if (result){
                 out.write("<script>alert('修改算法成功！');location.href='main/algorithmManage/algorithm.jsp'</script>");
             } else {
@@ -77,8 +78,9 @@ public class AlgorithmServlet extends HttpServlet {
         } else if("newAlgorithm".equals(method)){
             String algorithm_name = request.getParameter("algorithm_name");
             String algorithm_path = request.getParameter("algorithm_path");
+            String algorithm_class = request.getParameter("algorithm_class");
 
-            boolean result = as.newAlgorithm(algorithm_name, algorithm_path);
+            boolean result = as.newAlgorithm(algorithm_name, algorithm_path, algorithm_class);
 
             if (result){
                 out.write("<script>alert('添加算法成功！');location.href='main/algorithmManage/algorithm.jsp'</script>");

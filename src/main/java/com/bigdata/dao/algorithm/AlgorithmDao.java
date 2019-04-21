@@ -32,12 +32,12 @@ public class AlgorithmDao {
     }
 
 
-	public Boolean updateAlgorithm(String algoId, String algorithm_name, String algorithm_path) {
-		return util.update("update algorithm set algorithm_name=?,algorithm_path=? where id=?", algorithm_name, algorithm_path, algoId);
+	public Boolean updateAlgorithm(String algoId, String algorithm_name, String algorithm_path, String algorithm_class) {
+		return util.update("update algorithm set algorithm_name=?,algorithm_path=?,algorithm_class=? where id=?", algorithm_name, algorithm_path, algorithm_class, algoId);
 	}
 
-	public Boolean newAlgorithm(String algorithm_name, String algorithm_path) {
-		return util.update("insert into algorithm values(null,?,?)", algorithm_name, algorithm_path);
+	public Boolean newAlgorithm(String algorithm_name, String algorithm_path, String algorithm_class) {
+		return util.update("insert into algorithm values(null,?,?,?)", algorithm_name, algorithm_path, algorithm_class);
 	}
 
 

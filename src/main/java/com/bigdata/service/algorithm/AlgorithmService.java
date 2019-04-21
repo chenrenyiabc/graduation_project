@@ -17,12 +17,12 @@ public class AlgorithmService {
         return ad.getAlgorithmPath(algoId);
     }
 
-    public Boolean updateAlgorithm(String algoId, String algorithm_name, String algorithm_path) {
-        return ad.updateAlgorithm(algoId, algorithm_name, algorithm_path);
+    public Boolean updateAlgorithm(String algoId, String algorithm_name, String algorithm_path, String algorithm_class) {
+        return ad.updateAlgorithm(algoId, algorithm_name, algorithm_path, algorithm_class);
     }
 
-    public Boolean newAlgorithm(String algorithm_name, String algorithm_path) {
-        return ad.newAlgorithm(algorithm_name, algorithm_path);
+    public Boolean newAlgorithm(String algorithm_name, String algorithm_path, String algorithm_class) {
+        return ad.newAlgorithm(algorithm_name, algorithm_path, algorithm_class);
     }
 
     public Boolean deleteAlgorithm(String algoId) {

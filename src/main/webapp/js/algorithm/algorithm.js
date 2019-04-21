@@ -17,6 +17,7 @@ $(function () {
                     "<td>"+ data[row]["id"] +"</td>" +
                     "<td id='myid1_"+ data[row]["id"] +"' value='"+ data[row]["algorithm_name"] +"'>"+ data[row]["algorithm_name"] +"</td>" +
                     "<td id='myid2_"+ data[row]["id"] +"' value='"+ data[row]["algorithm_path"] +"'>"+ data[row]["algorithm_path"] +"</td>" +
+                    "<td id='myid3_"+ data[row]["id"] +"' value='"+ data[row]["algorithm_class"] +"'>"+ data[row]["algorithm_class"] +"</td>" +
                     "<td>" +
                         "<button type='button' id='modify_"+data[row]["id"]+"' onclick='modifyFunction("+data[row]["id"]+")' data-toggle='modal' data-target='#myModal' class='btn btn-warning' value='"+data[row]["id"]+"'>修改</button>" +
                         "<button type='button' id='delete_"+data[row]["id"]+"' onclick='deleteFunction("+data[row]["id"]+")' data-toggle='modal' data-target='#myModal2' class='btn btn-danger' value='"+data[row]["id"]+"'>删除</button>" +
@@ -53,6 +54,8 @@ function modifyFunction(id) {
                 "<input type='text' class='algorithm_name' name='algorithm_name' value='"+data[0]['algorithm_name']+"' /><br /><br />" +
                 "请重新输入算法路径：" +
                 "<input type='text' class='algorithm_path' name='algorithm_path' value='"+data[0]['algorithm_path']+"' /><br /><br />" +
+                "请重新输入算法主类：" +
+                "<input type='text' class='algorithm_class' name='algorithm_class' value='"+data[0]['algorithm_class']+"' /><br /><br />" +
                 "<input type='hidden' name='algoId' value='"+data[0]['id']+"' />" +
                 "<input type='submit' class='submit' name='submit' value='提交修改的信息' />" +
                 "</form>");
@@ -81,11 +84,13 @@ function deleteFunction(id){
                 "<th>算法ID</th>" +
                 "<th>算法名</th>" +
                 "<th>算法路径</th>" +
+                "<th>算法主类</th>" +
                 "</tr>" +
                 "<tr>" +
                 "<td>" + data[0]["id"] + "</td>" +
                 "<td>" + data[0]['algorithm_name'] + "</td>" +
                 "<td>" + data[0]['algorithm_path'] + "</td>" +
+                "<td>" + data[0]['algorithm_class'] + "</td>" +
                 "</tr>" +
                 "</table>" +
                 "<div style='margin:0 200px'><form action='AlgorithmServlet?method=deleteAlgorithm' method='post'>" +
