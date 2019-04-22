@@ -70,5 +70,9 @@ public class DataSourceDao {
 	public void close(){
 		util.close();
 	}
-	
+
+	public DataSource getDataSourceByName(String source_name, int userId) {
+		String sql = "select id from data_source where name =? and userid=?";
+		return util.queryObject(sql, DataSource.class, source_name, userId);
+	}
 }

@@ -133,4 +133,8 @@ public class DataSourceService {
 	public void close(){
 		dsDao.close();
 	}
+
+	public DataSource getDataSourceByName(String source_name, int userId) {
+		return dsDao.getDataSourceByName(source_name, userId);
+	}
 }

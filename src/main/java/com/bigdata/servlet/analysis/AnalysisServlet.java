@@ -21,6 +21,7 @@ import com.bigdata.bean.User;
 import com.bigdata.service.algorithm.AlgorithmService;
 import com.bigdata.service.analysis.AnalysisService;
 import com.bigdata.service.analysis.HiveService;
+import com.bigdata.service.datasource.DataSourceService;
 import com.bigdata.util.DBUtils;
 import com.bigdata.util.HiveUtil;
 import com.bigdata.util.PropertiesUtil;
@@ -57,6 +58,7 @@ public class AnalysisServlet extends HttpServlet {
 		DBUtils dbUtil = DBUtils.getDBUtils();
 		AnalysisService analysisService = new AnalysisService();
 		AlgorithmService algorithmService = new AlgorithmService();
+		DataSourceService dataSourceService = new DataSourceService();
 		HiveService hiveService = new HiveService();
 
 		//PropertiesUtil propertiesUtil = new PropertiesUtil("system.properties");
@@ -225,35 +227,37 @@ public class AnalysisServlet extends HttpServlet {
 				out.write("success");
 			}
 		}else if("tohql".equals(method)) {
-			hiveUtil = new HiveUtil();
-			hiveUtil.changeDatabase("user"+userId);
+//			hiveUtil = new HiveUtil();
+//			hiveUtil.changeDatabase("user"+userId);
 //			List<String> tableList = hiveUtil.getTaleList();
 //			System.out.println(tableList);
-			List<String> firstTableField = null;
-			if(tableList.size() != 0){
-				firstTableField = hiveUtil.getTableInfo(tableList.get(0));
-			}
 
 			List<String> tableList = hiveService.queryHQLTableList("user"+userId);
 
+			List<String> firstTableField = null;
+			if(tableList.size() != 0){
+//				firstTableField = hiveUtil.getTableInfo(tableList.get(0));
+				firstTableField = hiveService.queryTableField("user"+userId, tableList.get(0));
+			}
 
-					request.getSession().setAttribute("firstTableField", firstTableField);
+			request.getSession().setAttribute("firstTableField", firstTableField);
 			request.getSession().setAttribute("tableList", tableList);
 			response.sendRedirect("main/analysis/analysisHQL.jsp");
 		}else if("query_source_id".equals(method)) {
 			String source_name = request.getParameter("source_name");
-			String sql = "select id from data_source where name =? and userid=?";
-			ResultSet rs = dbUtil.queryResult(sql, source_name,userId);
+//			String sql = "select id from data_source where name =? and userid=?";
+			DataSource dataSource = dataSourceService.getDataSourceByName(source_name, userId);
+//			ResultSet rs = dbUtil.queryResult(sql, source_name,userId);
 			
-			String source_id = null;
-			try {
-				while(rs.next()) {
-					source_id = rs.getString(1);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			String source_id = dataSource.getId().toString();
+//			try {
+//				while(rs.next()) {
+//					source_id = rs.getString(1);
+//				}
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			out.write(source_id);
 		}
 		
