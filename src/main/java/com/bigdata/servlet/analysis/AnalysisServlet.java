@@ -61,9 +61,7 @@ public class AnalysisServlet extends HttpServlet {
 		DataSourceService dataSourceService = new DataSourceService();
 		HiveService hiveService = new HiveService();
 
-		//PropertiesUtil propertiesUtil = new PropertiesUtil("system.properties");
-		//String hostName = propertiesUtil.readPropertyByKey("hostName");
-		
+
 		HiveUtil hiveUtil = null;
 		
 		String method = request.getParameter("method");
@@ -96,10 +94,6 @@ public class AnalysisServlet extends HttpServlet {
 
 			boolean result = analysisService.saveFlow(name,userId,flow_status,source_id,flow_type,hive_sql,id_int_string ? mr_id_string : mr_id_int,result_table,result_path);
 			
-//			String sql = "insert into data_flow values(null,?,?,?,?,?,?,?,?,?)";
-//
-//			boolean result = dbUtil.update(sql, new Object[]{name,userId,flow_status,source_id,flow_type,hive_sql,id_int_string ? mr_id_string : mr_id_int,result_table,result_path});
-
 			if(result) {
 				out.write("success");
 			}
@@ -114,75 +108,27 @@ public class AnalysisServlet extends HttpServlet {
 			String result_table = request.getParameter("result_table");
 
 			boolean result = analysisService.saveFlowHQL(name,userId,flow_status,flow_type,hive_sql,result_table);
-			
-//			String sql = "insert into data_flow values(null,?,?,?,null,?,?,null,?,null)";
-//			boolean result = dbUtil.update(sql, new Object[]{name,userId,flow_status,flow_type,hive_sql,result_table});
-//			System.out.println(result);
+
 			if(result) {
 				out.write("success");
 			}
 		}else if("query_hql_flow".equals(method)) {
-//			hiveUtil = new HiveUtil();
-//			hiveUtil.changeDatabase("user"+userId);
-//			List<String> tableList = hiveUtil.getTaleList();
-//			System.out.println(tableList);
 
 			List<String> tableList = hiveService.queryHQLTableList("user"+userId);
-			System.out.println(tableList);
 			
 			out.write(JSONArray.fromObject(tableList).toString());
 		}else if("query_table_field".equals(method)) {
-//			hiveUtil = new HiveUtil();
-//			hiveUtil.changeDatabase("user"+userId);
 			String tableName = request.getParameter("tableName");
-//			List<String> tableFieldList = hiveUtil.getTableInfo(tableName);
 
 			List<String> tableFieldList = hiveService.queryTableField("user"+userId, tableName);
-
-			for (String string : tableFieldList) {
-				System.out.println(string);
-			}
 
 			out.write(JSONArray.fromObject(tableFieldList).toString());
 		}else if("query_exist_flow".equals(method)) {
 			String flowId = request.getParameter("flowId");
-//			String sql1 = "select * from data_flow where id=?";
-//			DataFlow dataFlow = dbUtil.queryObject(sql1, DataFlow.class, flowId);
 
 			DataFlow dataFlow = analysisService.queryExistFlow(flowId);
-
-//			String sql2 = "select name from data_source where type=0 and userid=?";
-//			ResultSet rs1 = dbUtil.queryResult(sql2, userId);
-//			List<String> dataSource = new ArrayList<>();
-//			try {
-//				while(rs1.next()) {
-//					dataSource.add(rs1.getString(1));
-//				}
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 			List<String> dataSource = analysisService.queryDataSource(userId);
-
-
-//			String sql3 = "select algorithm_name from algorithm";
-//			ResultSet rs3 = dbUtil.queryResult(sql3);
-//			List<String> algorithm = new ArrayList<>();
-//			try {
-//				while(rs3.next()) {
-//					algorithm.add(rs3.getString(1));
-//				}
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-
 			List<String> algorithm = algorithmService.queryAlgoName();
-
-//			hiveUtil = new HiveUtil();
-//			hiveUtil.changeDatabase("user" + userId);
-//			List<String> hqlTableList = hiveUtil.getTaleList();
-
 			List<String> hqlTableList = hiveService.queryHQLTableList("user" + userId);
 
 			request.getSession().setAttribute("hqlTableList", hqlTableList);
@@ -202,41 +148,25 @@ public class AnalysisServlet extends HttpServlet {
 			String chooseData = request.getParameter("chooseData");
 			String chooseAlgorithm = request.getParameter("chooseAlgorithm");
 			String resultPath = request.getParameter("resultPath");
-			
-			System.out.println(flowId + " " + process_name + " " + chooseData + " " + chooseAlgorithm + " " + resultPath);
 
 			boolean result = analysisService.updateMRFlow(process_name, chooseData, chooseAlgorithm, resultPath, flowId);
-			System.out.println(result);
 
-//			String sql = "update data_flow set name=?,source_id=?,mr_id=?,result_path=? where id=?";
-//			dbUtil.update(sql, process_name, chooseData, chooseAlgorithm, resultPath, flowId);
 			out.write("<script>alert('修改MR流程成功！');location.href='main/flowManage/flowManage.html'</script>");
 		}else if("update_hql_flow".equals(method)) {
 			String flowId = request.getParameter("flowId");
 			String name = request.getParameter("name");
 			String hive_sql = request.getParameter("hive_sql");
 			String result_table = request.getParameter("result_table");
-			
-			System.out.println(flowId + " " + name + " " + hive_sql + " " + result_table);
 
 			boolean result = analysisService.updateHQLFlow(name, hive_sql, result_table, flowId);
-
-//			String sql = "update data_flow set name=?,hive_sql=?,result_table=? where id=?";
-//			boolean result = dbUtil.update(sql, name, hive_sql, result_table, flowId);
 			if(result) {
 				out.write("success");
 			}
 		}else if("tohql".equals(method)) {
-//			hiveUtil = new HiveUtil();
-//			hiveUtil.changeDatabase("user"+userId);
-//			List<String> tableList = hiveUtil.getTaleList();
-//			System.out.println(tableList);
-
 			List<String> tableList = hiveService.queryHQLTableList("user"+userId);
 
 			List<String> firstTableField = null;
 			if(tableList.size() != 0){
-//				firstTableField = hiveUtil.getTableInfo(tableList.get(0));
 				firstTableField = hiveService.queryTableField("user"+userId, tableList.get(0));
 			}
 
@@ -245,19 +175,9 @@ public class AnalysisServlet extends HttpServlet {
 			response.sendRedirect("main/analysis/analysisHQL.jsp");
 		}else if("query_source_id".equals(method)) {
 			String source_name = request.getParameter("source_name");
-//			String sql = "select id from data_source where name =? and userid=?";
 			DataSource dataSource = dataSourceService.getDataSourceByName(source_name, userId);
-//			ResultSet rs = dbUtil.queryResult(sql, source_name,userId);
 			
 			String source_id = dataSource.getId().toString();
-//			try {
-//				while(rs.next()) {
-//					source_id = rs.getString(1);
-//				}
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 			out.write(source_id);
 		}
 		
