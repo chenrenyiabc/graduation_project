@@ -153,7 +153,7 @@ public class HDFSMysqlServlet extends HttpServlet {
 			//获取目录(自动生成目录，需传入不存在的目录)
 			String targetDir = request.getParameter("targetDir");
 			//拼接命令
-			cmd += "sqoop import  --connect " + jdbcUrl + "bigdatademo" + " --username " + " root " + " --password "
+			cmd += "sqoop import  --connect " + jdbcUrl + "graduation_project" + " --username " + " root " + " --password "
 					+ " root " + " --table " + tableName + " --target-dir " + targetDir + " --columns " + column
 					+ " -m 1 ";
 			System.out.println(cmd);

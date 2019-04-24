@@ -58,11 +58,7 @@ public class AlgorithmServlet extends HttpServlet {
             System.out.println(algorithm);
             request.setAttribute("algorithm", algorithm);
             request.setAttribute("algoId", algoId);
-            //response.sendRedirect("main/algorithmManage/modifyAlgorithm.jsp");
-            //request.getRequestDispatcher("main/algorithmManage/algorithm.jsp").forward(request,response);
-            //response.sendRedirect("main/algorithmManage/algorithm.jsp");
             out.write(JSONArray.fromObject(algorithm).toString());
-            //out.write(JSONArray.fromObject(algoId).toString());
         } else if("modifyAlgorithm".equals(method)){
             String algoId = request.getParameter("algoId");
             String algorithm_name = request.getParameter("algorithm_name");
