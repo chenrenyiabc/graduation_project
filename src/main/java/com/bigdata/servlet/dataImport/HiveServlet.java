@@ -178,7 +178,7 @@ public class HiveServlet extends HttpServlet {
 			//获取Hive目录表()
 			String targetHiveTable = request.getParameter("targetHiveTable");
 			//拼接命令
-			cmd += "sqoop import  --connect " + jdbcUrl + "bigdatademo" + " --username " + " root " + " --password "
+			cmd += "sqoop import  --connect " + jdbcUrl + "graduation_project" + " --username " + " root " + " --password "
 					+ " root " + " --hive-import " +" --table " + tableName + " --hive-database " + " user" + userId  + " --columns " + column
 					+ " --hive-table " + targetHiveTable + " -m 1 ";
 			System.out.println(cmd);

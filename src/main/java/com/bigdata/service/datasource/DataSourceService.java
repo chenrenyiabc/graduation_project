@@ -88,25 +88,30 @@ public class DataSourceService {
 	 * 现在只做了mysql中的数据删除，没有做hive以及hdfs上的删除，后面需要关联
 	 * */
 	public boolean deleteDataSource(Integer id, Integer userId){
+		System.out.println("id:" + id + ",userID:" + userId);
 		if(id == null || userId == null)
 			return false;
 		
 		//这里需要删除HDFS和Hive上的
 		//先获取该数据源信息
 		DataSource ds = getDataSourceById(userId, id);
+		System.out.println(ds);
+		boolean result = ds != null ? (deleteDatasource(ds, userId) ? dsDao.deleteDataSource(id, userId) : false) : false;
+		System.out.println(result);
 		
-		return ds != null ? (deleteDatasource(ds, userId) ? dsDao.deleteDataSource(id, userId) : false) : false;
+		return result;
 	}
 	
 	//删除数据源信息
 	public boolean deleteDatasource(DataSource ds, Integer userId){
 		boolean flag = false;
 		if(ds.getType() == 0){//HDFS
-			flag = new HDFSUtil(new PropertiesUtil("system.properties").readPropertyByKey("hostName")).delete2(ds.getHdfsPath(), false);
+			flag = new HDFSUtil(new PropertiesUtil("system.properties").readPropertyByKey("hostName")).delete2(ds.getHdfsPath(), true);
 		}else{//hive类型
 			//切换到对应的数据库，并且执行删除表操作
 			flag = new HiveUtil("user" + userId).delTable(ds.getTableName());
 		}
+		System.out.println("flag:"+flag);
 		return flag;
 	}
 	

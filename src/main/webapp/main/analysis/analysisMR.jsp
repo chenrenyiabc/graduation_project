@@ -21,7 +21,7 @@
 <div class="container">
 	<ul class="nav nav-tabs">
   		<li role="presentation" id='mapreduce' class="mapreduce active"><a href="javascript:void(0)">MapReduce</a></li>
-  		<li role="presentation" id='hql' class="hql"><a href="AnalysisServlet?method=tohql">HQL</a></li>
+  		<li role="presentation" id='hql' class="hql"><a href="AnalysisServlet?method=tohql">Hive</a></li>
 	</ul>
 	<div id="showmsg" class="showmsg" style="display:none; position:absolute">
 		<div class="layoutDiv">

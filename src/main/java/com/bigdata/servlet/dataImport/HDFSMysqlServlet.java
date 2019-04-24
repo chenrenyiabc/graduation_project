@@ -157,7 +157,8 @@ public class HDFSMysqlServlet extends HttpServlet {
 					+ " root " + " --table " + tableName + " --target-dir " + targetDir + " --columns " + column
 					+ " -m 1 ";
 			System.out.println(cmd);
-			remoteUtil.execute(cmd);
+			String result = remoteUtil.execute(cmd);
+			System.out.println(result);
 			response.sendRedirect("main/dataImport/hdfs_show.jsp");
 			//保存到数据元中
 			dateStr = new SimpleDateFormat(format).format(new Date()); 
