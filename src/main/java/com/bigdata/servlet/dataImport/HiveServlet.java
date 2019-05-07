@@ -186,7 +186,6 @@ public class HiveServlet extends HttpServlet {
 			
 			//保存到数据元中
 			dateStr = new SimpleDateFormat(format).format(new Date()); 
-//			dbUtil.executeUpdate("insert into data_source values (?,?,?,?,?,?,?,?,?)", new Object[] {null,user.getId(),targetHiveTable,1,1,targetHiveTable,column,dateStr,null});		
 			DataSourceService dService2 = new DataSourceService();
 			dService2.addDataSource(new DataSource(user.getId(), targetHiveTable, 1, targetHiveTable, column, dateStr));
 			dService2.close();

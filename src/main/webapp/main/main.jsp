@@ -30,7 +30,7 @@ if(user == null){
 
 		<div class="top">
 			<i class="icon-bar-chart"></i>
-			<span>大数据计算平台</span>
+			<span>电商用户行为大数据平台</span>
 			<!-- 右边导航栏 -->
 			<div class="user">
 				<!-- 右边用户信息展示 -->
